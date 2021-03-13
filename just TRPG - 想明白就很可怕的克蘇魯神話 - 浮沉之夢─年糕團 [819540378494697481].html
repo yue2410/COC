@@ -1,0 +1,3391 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>just TRPG - 浮沉之夢─年糕團</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatlog__reference-link:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="https://cdn.discordapp.com/icons/495551793992957962/c984650d4b9013b7083f627f6ac10c40.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">just TRPG</div>
+        <div class="preamble__entry">想明白就很可怕的克蘇魯神話 / 浮沉之夢─年糕團</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="819544610812198912" id="message-819544610812198912">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">是潮汐拍打沙子的聲音
+感到腳邊有些微涼和濕潤的妳緩緩睜開了眼睛
+然後妳發現自己正穿著平日的服裝，赤著腳行走在一片潔白無瑕的沙灘之上
+右側是深藍而透明的海面， 潮汐時不時地拍打岸邊，如同嬰兒的呼吸一般使人安心
+在更遠的地方，高邈的穹頂之上— —正懸掛著一輪圓月。月光灑落於海面之上，勾勒出事物的輪廓
+
+有幾波潮汐溫柔地拍打在妳的腳上，海水的觸感和現實中無異
+從四周的景觀看來這裡什麼東西都沒有，如妳所見的
+但是，妳的視野之中突然闖入了一抹突兀的白色
+那是一名站立在水中，身著白色裙裝，約十二三歲的少女。她就那樣靜靜地看著妳，隨後輕輕笑了
+宛如新生雛菊般潔淨又溫和</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="819544872272003142" id="message-819544872272003142">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「那個...請問這裡是哪裡呢?我為什麼會在這裡?」
+月疑惑的看著那個少女詢問著，自己又遇到什麼不尋常的事件了嗎...?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="819545491611058189" id="message-819545491611058189">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「大姐姐妳好，既然過來了，要一起逛逛嗎？」
+少女沒有回答，只是在水面上向妳揮手</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="819545746742444053" id="message-819545746742444053">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">月沉思了一下，點了點頭，慢慢走向了少女。
+「要去哪裡逛呢?姐姐沒辦法走在水上呢。」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="819546835752058921" id="message-819546835752058921">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">踏上海面的一瞬間，妳發現自己竟能輕鬆自如地行走在水面上，
+每踏出一步，腳下便誕生一串漣漪
+
+「放輕鬆就好了。」少女依舊帶著柔和的笑容，
+緩緩拉起妳的雙手，然後挪動步伐，一步一步往那片深藍的深處走去
+
+少女就這樣帶著妳走向水中。兩人的身子逐漸被冰涼的海水淹沒。
+正當妳以為自己就要被淹死的時候，卻驚異地發現自己竟然能夠像在陸地上一般呼​​吸。即使是沒有特別學過游泳的妳，也像回到了母親的胎內一般自由自在。 
+月光劈開了深藍而透著絲絲暗沉的海面，妳能夠看到周身游弋著無數透明而散發著奇異光彩的魚兒，
+在妳們身邊游動著，像極了水面底下的極光。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="819547243379556424" id="message-819547243379556424">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「挖...好漂亮的景色阿...」
+月驚訝又開心的看著周遭美妙的景色，尤其是那宛如海中極光的魚兒們更是讓她興奮不已。
+「阿...對了，我叫諸葛月~小妹妹你叫什麼名字呢。」
+就在月想跟小女孩搭話時，突然想到，自己還不知道怎麼稱呼她呢</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="819547554755641355" id="message-819547554755641355">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「名字……？我就是我呀！名字什麼的，不重要吧。」
+少女還是微笑著，彷彿對她來說無名是如此的理所當然</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="819548103529988118" id="message-819548103529988118">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">月想了想後搖了搖頭
+「名字是很重要的喔~畢竟那是代表一個&quot;人&quot;的&quot;存在&quot;證明呢，有了名字才能讓其他人記下對方呢，即便是綽號或是稱呼，也可以說是名字的一種喔。」
+她沉思了一下後看向少女。
+「你不介意的話，我幫你取個名字怎麼樣呢?」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="819548974218346508" id="message-819548974218346508">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「我……」
+還未得到少女的回答
+一瞬間——妳的意識被拉入了一片無盡的黑暗之中
+
+再度睜開眼睛，妳發現自己身處於一個類似兒童房的純白色房間，
+之所以說是兒童房，是因為這裡擺放著許多小孩子會喜歡的毛絨玩具
+在毛絨玩具群的正中央，坐著一個正在閱讀什麼書籍，七八歲左右的女孩
+奇怪的是，本應是每個有孩子的家都會出現的景象，妳卻完全感受不到一絲一毫的溫情與童真</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="819549344109690960" id="message-819549344109690960">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「奇怪...這裡是...?」
+月疑惑著自己怎麼會突然來到這裡，看著眼前的女孩，猜測她與少女的關係。
+同時也對這感覺意外冷漠的景象感到一絲不舒服</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819549443732144165" id="message-819549443732144165">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">她觀察著少女對於自己的出現有沒有反應</span>
+
+                                <span class="chatlog__edited-timestamp" title="11-Mar-21 08:36 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="819549765556502529" id="message-819549765556502529">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">女孩看書看得很專注的樣子，還沒注意到房間裡多了一個人</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="819550085171642368" id="message-819550085171642368">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">月想了一下，走到了她的旁邊，然後小聲的詢問。
+「小妹妹，你在看什麼書呢?」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="819550237114892308" id="message-819550237114892308">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「唔……這個字要怎麼念……呀啊！」
+聽到聲音後突然發現房間裡多出第二人的小女孩小小的叫了一聲。
+此時，妳發現她的臉長得和一開始出現在海邊的少女幾乎一模一樣。
+「大姐姐……是誰？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819550311240433675" id="message-819550311240433675">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//想看書本內容可以過偵查</span>
+
+                                <span class="chatlog__edited-timestamp" title="11-Mar-21 08:40 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="819550541738410034" id="message-819550541738410034">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">cc 63 偵查</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(224,42,107)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Mar-21 08:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="819550542350778379" id="message-819550542350778379">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nawan#7673">@立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+1D100 ≦ 63：
+87 → 失敗：偵查</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="819550624286375977" id="message-819550624286375977">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「我嗎?我叫諸葛月喔，小妹妹你呢?你叫什麼名字阿?」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="819551241264824350" id="message-819551241264824350">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">從書中的內容，妳發現這是一本童話故事
+雖然因為角度關係看不到書名，但能看到小女孩指的那一頁寫著
+『她在面臨死亡之際，將已經織好的七件蕁麻衣，一件件披在變成天鵝的七位哥哥身上。』
+
+看來她在苦惱的是「蕁」這個字該怎麼唸吧</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819551401721200640" id="message-819551401721200640">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「我……沒有名字，爸爸說，病好了以後才會給我名字。」
+女孩小聲地對妳說道</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="819551721738469377" id="message-819551721738469377">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「是嗎...那你要加油喔!把病魔給打敗!」
+月輕輕地摸了摸小女孩的頭。
+然後對她說。
+「這個字，念做ㄒㄩㄣˊ喔」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="819552712189542420" id="message-819552712189542420">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「嗯，我會加油！」
+彷彿要證明自己很有精神，女孩握起小小的拳頭幫自己打氣
+停頓了一下，她像是想到了什麼，指著手上的書問妳
+「吶，大姐姐，為什麼這個故事裡的姐姐會拚命的救哥哥們呢？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="819552977840898098" id="message-819552977840898098">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「恩~應該是因為她很喜歡哥哥們吧，所以即便自己面臨死亡，也努力地想要幫助哥哥們呢。」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="819553487594586132" id="message-819553487594586132">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「最喜歡了……嗎？」
+女孩低著頭，陷入了長長的沉思
+這時，妳發現前方的牆上不知何時出現了一道門，好像可以出去的樣子</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="819553776573612033" id="message-819553776573612033">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">阿...有門出現了呢
+月思考了一下，詢問小女孩。
+「姐姐好像差不多到離開的時間了呢，小妹妹還有什麼想問姊姊的嗎?」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="819554600939159572" id="message-819554600939159572">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">女孩想了一下，才抬起頭，滿懷期待的看著妳
+「因為生病，爸爸都不讓我和哥哥姐姐出門
+大姊姊，外面是什麼樣子，好玩嗎？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 08:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="819555126552559649" id="message-819555126552559649">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「嗯!外面有很多東西喔!有很多漂亮的風景，好玩的事物!也有很多好吃的東西呢!」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 09:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="819555642431897631" id="message-819555642431897631">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">聽到妳的回答，女孩很高興的樣子
+「我最想知道的就是這個，謝謝妳，大姊姊。」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 09:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="819555799134109736" id="message-819555799134109736">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「嗯!很高興能幫到妳~那姐姐就先回去囉。」
+月向對方揮了揮手，慢慢走向那個門</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 09:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="819557741147979819" id="message-819557741147979819">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">穿越那扇門，身後的白色房間也跟著消失，妳的眼前就出現一個類似手術室的冰冷房間
+裡面泛著白色的冷光，而在手術台之上躺著的就是雙眼緊閉，臉色蒼白，前一秒還在與妳交談的女孩
+這在醫院或許是十分危急的情況，但在看到手術台周圍都圍著什麼後，眼前的場景反倒顯得詭異
+女孩身上畫滿了各式各樣的記號，檯子一旁還散落的各種尺寸的刀具
+在手術台的周圍，有著幾隻頭顱像蘑菇的奇怪生物和一名長相與女孩相似的中年男子，似乎正在交談些什麼
+與其說是醫院的急救現場，不如說是活體實驗室更為貼切
+
+目擊米戈 sc1/1d6</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 09:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="819557785125388299" id="message-819557785125388299">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">cc 47</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(224,42,107)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Mar-21 09:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="819557786089291806" id="message-819557786089291806">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nawan#7673">@立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+1D100 ≦ 47：
+76 → 失敗</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 09:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="819557795845636136" id="message-819557795845636136">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">1d6</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(224,42,107)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Mar-21 09:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="819557796341219389" id="message-819557796341219389">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nawan#7673">@立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+1d6：
+4[4] = 4</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 09:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="819557970115428362" id="message-819557970115428362">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">等等!?這是在做什麼!?
+月看到這個情形沒有多想的衝了上去，想救下少女</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 09:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="819559088303374376" id="message-819559088303374376">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">在妳往手術台衝過去時，一切瞬間如鏡子般破碎
+妳突然感覺一陣眩暈
+回過神來，沒有手術台，沒有那些奇怪的生物，妳回到了一開始的海洋
+眼前，是眼角微微泛淚，眼眶逐漸紅腫的少女。
+「即使這樣……我還能擁有名字嗎？」</span>
+
+                                <span class="chatlog__edited-timestamp" title="11-Mar-21 09:15 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 09:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="819559397901991996" id="message-819559397901991996">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">月看著眼前的少女，想起剛剛的事情...輕輕摸了摸她的頭。
+「當然可以，因為只要有了名字，那就是妳存在過的證明呢。」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819561112848564244" id="message-819561112848564244">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//話說剛剛衝過去 有聽到些什麼嗎 <img class="emoji " alt="16" title="16" src="https://cdn.discordapp.com/emojis/738061083662876682.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 09:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="819561268188020736" id="message-819561268188020736">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「謝謝妳，月姊姊。」
+少女終究還是沒能忍住淚水
+你同時能感覺到一股上浮的力量，她在輕輕地踢水，想帶你上去
+「在我的夢裡待太久的人……都會死。
+但是回到沙灘上，就能醒過來了。」
+說到一半，她已經泣不成聲。
+
+「如果可以的話……我想……我想做一個普通的女孩子……然後上學。
+和朋友一起出去玩，傷心的時候可以盡情哭泣，開心的時候可以開懷大笑。
+可以遇到喜歡 的人，也可以一個人活得很快樂。
+我也想擁有正常的家庭，也想……愛著他們。但是這些都已經不可能了。
+………………但是。」
+
+「能夠認識妳太好了，大姊姊。」
+
+轉眼間，妳們已經回到海面上，離岸邊只有短短幾公尺</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819561370721714226" id="message-819561370721714226">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//沒有呢</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 09:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="819561565710843994" id="message-819561565710843994">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「是嗎...雖然時間很短，但我也很高興能認識妳...」
+「如果我離開了這裡，妳還是會留在這個空間嗎?」
+月在快要回到海面上時，突然停了下來，詢問起女孩</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819561871572074497" id="message-819561871572074497">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">她的眼神帶著悲傷與溫柔，輕輕地摸著少女的頭。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 09:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="819562256194469919" id="message-819562256194469919">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「會的……因為這是我的夢，一個永遠不會醒的夢。」
+少女垂著雙眼，雖然不再哭泣了，但依然帶著哀傷</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 09:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="819562758457655369" id="message-819562758457655369">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「夢...嗎，那，我有什麼辦法，能夠讓妳擺脫這個夢嗎...如果一直待在這，就沒辦法看看外面的世界了吧。」
+月想著，眼前的少女...或許現實中已經出了什麼事情，但...被永遠困在這個虛假的夢境，實在太哀傷了，如果可以想幫助她...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 09:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="819563807021858816" id="message-819563807021858816">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">少女愣了愣
+「我已經看不到外面的世界了，但是要永遠結束這個夢的話……」
+她再次分開海水，再次向下沉淪
+「大姊姊……要幫我嗎？」
+再次向妳伸出手</span>
+
+                                <span class="chatlog__edited-timestamp" title="11-Mar-21 09:34 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 09:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="819564184986714123" id="message-819564184986714123">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「嗯!讓我幫助妳吧!」
+月笑著握住了少女的手，跟著她一起沉淪進海中</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 09:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="819565327909257226" id="message-819565327909257226">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">這次沒有七彩繽紛的魚，只有妳們兩人往那片深藍前行
+不知道游了多久，妳看到了一個罐子
+裡頭裝滿了奇怪的液體，泡著一個人類的大腦
+「我沒辦法自己打開它，但如果是大姊姊的話……」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 09:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="819565894396542987" id="message-819565894396542987">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「恩...我來試試，不過在這之前。」
+月看向了少女，微笑著用輕柔的語氣說。
+「在結束這個夢之前，能讓我幫你取個名字嗎?」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 09:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="819566337855717377" id="message-819566337855717377">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">少女輕輕的點了點頭，露出淺淺的微笑</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 09:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="819566811963326464" id="message-819566811963326464">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「如果你不介意的話，就跟我姓吧，叫做...諸葛雪怎麼樣呢?」
+月仔細思考著，看著少女在海中那耀眼的純白，脫口而出了雪這個名字</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 09:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="819567424545882173" id="message-819567424545882173">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「嗯，妳是月姊姊，我是小雪。」
+少女此時笑得柔和，像極了一開始見到的那朵海上雛菊</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 09:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="819568093520986122" id="message-819568093520986122">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">月微笑地抱住了雪，然後...從眼眶中不自覺的留下了溫熱的液體滴落在小雪身上。
+「恩，很高興認識妳，小雪...然後，再見，希望妳能自由...來世能見到外面的世界。」
+帶著淚痕的月，用微笑的臉對著小雪揮了揮手，然後轉身打開了那個罐子</span>
+
+                                <span class="chatlog__edited-timestamp" title="11-Mar-21 10:02 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 09:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="819569143652024390" id="message-819569143652024390">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">─ ─ ─ ─ ─ ─ ─ ─ ─ ─</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="819571786378248253" id="message-819571786378248253">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">妳的意識再一次遠去
+ 睜開眼睛，妳發現自己正躺在家中的床上
+枕頭被什麼東西打濕，自己似乎忘記了什 麼……但是想不起來了。是做了夢嗎？ 
+
+<strong>夢遲早會遺忘掉的</strong>
+
+妳這麼想著，跑到桌前拿出紙和筆來，試圖憑藉殘存的印象來記錄這個夢。 
+然而妳無法寫下任何東西，有什麼很美好而又悲傷的東西充斥著妳的內心。
+ 記憶如同潮水一般急速散去。
+又是新的一天了
+
+但是，自那之後——
+妳一直感覺到有什麼人在守護著妳
+是心靈上的？或者肉體上的？但是那都不重要了。至少今後以往，妳不會再是孤單一人
+不知道過了多久，是某一個晚上？或者是又一次的日常結束之際，腳下又踩著那一片海水時——
+妳看到了熟悉的白色裙裝
+「雖然我確實被解放了，但是有意識碎片留下來了。」
+
+接著她對妳微笑了
+「大姊姊，能帶我去看外面的世界嗎？」
+
+TE 一起前行吧，妳我二人</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="819572295348912148" id="message-819572295348912148">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//TE阿 有GE嗎 <img class="emoji " alt="16" title="16" src="https://cdn.discordapp.com/emojis/738061083662876682.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="819572302873362432" id="message-819572302873362432">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">SAN值恢復：2d10+2d6
+意志+10
+少女進入夢中，與妳共享意識</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819572341431468123" id="message-819572341431468123">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//就是GE</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="819572468993622046" id="message-819572468993622046">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//阿 夢中阿  所以現在兩人共享記憶嗎</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="819572681245458503" id="message-819572681245458503">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//對，算是圓了她想去看世界的願望</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="819572700712009732" id="message-819572700712009732">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//有點哀傷 但很夢幻的回SAN本呢 謝謝KP <img class="emoji " alt="16" title="16" src="https://cdn.discordapp.com/emojis/738061083662876682.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819572788285145128" id="message-819572788285145128">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//我想想 如果會造夢或許就能讓她親身體驗了呢</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="819573089360281631" id="message-819573089360281631">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//突然合理的學造夢理由</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="819573170288853042" id="message-819573170288853042">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//沒錯呢XD</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819573241479430216" id="message-819573241479430216">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//阿 好像沒技能成功 所以就直接骰SAN回復呢</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819573265029922878" id="message-819573265029922878">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">2d10+2d6</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(224,42,107)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Mar-21 10:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="819573266242863134" id="message-819573266242863134">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nawan#7673">@立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+2d10+2d6：
+15[8+7]+4[3+1] = 19</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="819574244224401428" id="message-819574244224401428">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">.dp 85 幸運<img class="emoji " alt="16" title="16" src="https://cdn.discordapp.com/emojis/738061083662876682.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(224,42,107)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Mar-21 10:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="819574245126045737" id="message-819574245126045737">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nawan#7673">@立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+成長或增強檢定: 幸運<img class="emoji " alt="16" title="16" src="https://cdn.discordapp.com/emojis/738061083662876682.png">
+1D100 &gt; 85
+28 → 失敗!
+你的技能沒有變化!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="819574910103191572" id="message-819574910103191572">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//可以成長兩個技能對吧 ? 日後幕間?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="819575517778673704" id="message-819575517778673704">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//可以，但是要交後日談</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="819575885828325438" id="message-819575885828325438">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">月在與雪再遇之後，努力尋找著能讓她在夢中也能體驗到現實東西的方法。
+俗話說夢中可以實現一切想法，但好像沒有那麼簡單呢...
+於是她開始尋找起神秘的書籍，想從中尋找有沒有相關的內容，並在夢中嘗試一番。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819575938290286596" id="message-819575938290286596">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//我想成長神秘學 <img class="emoji " alt="16" title="16" src="https://cdn.discordapp.com/emojis/738061083662876682.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819575973388746802" id="message-819575973388746802">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//這是大概的後日內容</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="819576070013059163" id="message-819576070013059163">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//了解</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="819576332593135626" id="message-819576332593135626">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//大概要補充多少嗎 兩個機會應該都是神秘 造夢得跟另一個孩子連動才能知道呢 <img class="emoji " alt="16" title="16" src="https://cdn.discordapp.com/emojis/738061083662876682.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819576663985225799" id="message-819576663985225799">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//+pow 不回san對吧</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="819576692829454336" id="message-819576692829454336">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//後日談不限字數，有寫出來就OK</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="819576938951606322" id="message-819576938951606322">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//ok</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819577000603549757" id="message-819577000603549757">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">.dp 13 <img class="emoji " alt="16" title="16" src="https://cdn.discordapp.com/emojis/738061083662876682.png">我想要造夢</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(224,42,107)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Mar-21 10:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="819577001987801128" id="message-819577001987801128">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nawan#7673">@立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+成長或增強檢定: <img class="emoji " alt="16" title="16" src="https://cdn.discordapp.com/emojis/738061083662876682.png">我想要造夢
+1D100 &gt; 13
+79 → 成功!
+你的技能增加2點!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="819577027380248596" id="message-819577027380248596">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">.dp 15 <img class="emoji " alt="16" title="16" src="https://cdn.discordapp.com/emojis/738061083662876682.png">我想要造夢</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(224,42,107)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Mar-21 10:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="819577028712857640" id="message-819577028712857640">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nawan#7673">@立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+成長或增強檢定: <img class="emoji " alt="16" title="16" src="https://cdn.discordapp.com/emojis/738061083662876682.png">我想要造夢
+1D100 &gt; 15
+66 → 成功!
+你的技能增加3點!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="819577446172983357" id="message-819577446172983357">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//對，意志不加SAN</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="819578422124347442" id="message-819578422124347442">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//如果這+10可以回san 那真的很可觀 <img class="emoji " alt="16" title="16" src="https://cdn.discordapp.com/emojis/738061083662876682.png"></span>
+
+                                <span class="chatlog__edited-timestamp" title="11-Mar-21 10:32 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819579161232277545" id="message-819579161232277545">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//不過 te 回 2d10+2d6最高32 但ne回2d10+8最高28 感覺真的沒差很多 +8還更穩 <img class="emoji " alt="16" title="16" src="https://cdn.discordapp.com/emojis/738061083662876682.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="819580273305976832" id="message-819580273305976832">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//可是TE的意志+10很賺，尤其是對要玩魔法的</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="819580456475033610" id="message-819580456475033610">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//恩 月的師傅會很多魔法xd</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819580524980207616" id="message-819580524980207616">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//最賺應該是90的 直接變百</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819581111414816809" id="message-819581111414816809">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">// 米戈的科技把少女的精神世界和其他人的链接到了一起，即使少女被杀死，第二天，她也会
+抹去一切人格和记忆，继续生活下去
+//唉...所以 稍微魔改了嗎 <img class="emoji " alt="40" title="40" src="https://cdn.discordapp.com/emojis/812767673669779496.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819582018592964648" id="message-819582018592964648">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//然後我看的劇本有這個 pow+10（可以回 san） 這是指這裡+的pow 可以同時+san嗎 <img class="emoji " alt="40" title="40" src="https://cdn.discordapp.com/emojis/812767673669779496.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="819582230698917950" id="message-819582230698917950">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//嗯……可是我沒找到相關規則，不知道能不能加</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="819582440641134712" id="message-819582440641134712">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//應該是當獎勵吧 這樣比較合理 2d10+2d6+10 這樣的回san</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="819582496776781893" id="message-819582496776781893">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//然後劇情我改了沒錯，覺得這樣比較順，而且作者也說可以加帶回少女的劇情</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="819582560149438495" id="message-819582560149438495">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//很棒 <img class="emoji " alt="16" title="16" src="https://cdn.discordapp.com/emojis/738061083662876682.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819582591673958431" id="message-819582591673958431">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//接下來就是要看怎麼知道造夢法術了</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+                <span class="chatlog__reference-name" title="Nawan#7673" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+                <a class="chatlog__reference-link" href="#" onclick="scrollToMessage(event, &#39;819582440641134712&#39;)">
+                    <span class="chatlog__reference-content">
+//應該是當獎勵吧 這樣比較合理 2d10+2d6+10 這樣的回san                    </span>
+
+                </a>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="819582735541600256" id="message-819582735541600256">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//我覺得作者應該是知道+pow不能回san 所以補了一句可以回 就是當獎勵的</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="819582797105594379" id="message-819582797105594379">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//那加10吧，反正你SAN值一開始只有49，也夠危了</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+                <span class="chatlog__reference-name" title="Nawan#7673" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+                <a class="chatlog__reference-link" href="#" onclick="scrollToMessage(event, &#39;819582591673958431&#39;)">
+                    <span class="chatlog__reference-content">
+//接下來就是要看怎麼知道造夢法術了                    </span>
+
+                </a>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/599251594629873716/2ea3be12c8c82c71bf08749bfef13fb0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="高木 同學#1103" data-user-id="599251594629873716" style="color: rgb(221,129,54)">被躺椅痛擊的寧寧</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="819582834301861899" id="message-819582834301861899">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//找許普諾斯（誤</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819582901578235973" id="message-819582901578235973">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//先說好我沒爬文<img class="emoji " alt="16" title="16" src="https://cdn.discordapp.com/emojis/738061083662876682.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="819583246802092083" id="message-819583246802092083">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//喔 我知道妳說的 可惜我跑了XD</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/7bf7ecf185df3b2a969e5a0e77bd458a.png" alt="Avatar">
+                <span class="chatlog__reference-name" title="筱玥#2385" style="color: rgb(221,129,54)">筱月（在混善和中混間亂跑的KP)</span>
+                <a class="chatlog__reference-link" href="#" onclick="scrollToMessage(event, &#39;819582797105594379&#39;)">
+                    <span class="chatlog__reference-content">
+//那加10吧，反正你SAN值一開始只有49，也夠危了                    </span>
+
+                </a>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="819583269296668682" id="message-819583269296668682">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img class="emoji emoji--large" alt="37" title="37" src="https://cdn.discordapp.com/emojis/810856982143041536.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819584015107489792" id="message-819584015107489792">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//阿 但我發現這孩子在想幫人的狀況下有點莽  <img class="emoji " alt="16" title="16" src="https://cdn.discordapp.com/emojis/738061083662876682.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/683888454450544658/47eda2cd618088eed379409403fef173.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="futaba#7386" data-user-id="683888454450544658" style="color: rgb(221,129,54)">futaba</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 10:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="819585114325123082" id="message-819585114325123082">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//師妹一開始的意志就加10 我有點抖<img class="emoji " alt="14" title="14" src="https://cdn.discordapp.com/emojis/738060592597827604.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 11:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="819585696691257374" id="message-819585696691257374">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//之後找師傅學魔法了 思考怎麼跟喵喵認識</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/683888454450544658/47eda2cd618088eed379409403fef173.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="futaba#7386" data-user-id="683888454450544658" style="color: rgb(221,129,54)">futaba</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 11:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="819585978917716018" id="message-819585978917716018">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//等我去日本我就要去看看師妹<img class="emoji " alt="14" title="14" src="https://cdn.discordapp.com/emojis/738060592597827604.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 11:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="819586044617293824" id="message-819586044617293824">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//來啊 師妹會靈體剃刀就是</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/683888454450544658/47eda2cd618088eed379409403fef173.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="futaba#7386" data-user-id="683888454450544658" style="color: rgb(221,129,54)">futaba</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 11:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="819586224980623470" id="message-819586224980623470">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//<s>沒事 我們回去交流</s></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="819586283717787689" id="message-819586283717787689">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//別揍死師兄啊<img class="emoji " alt="22" title="22" src="https://cdn.discordapp.com/emojis/738071287355670560.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/457760460972752920/179aac2f429d175ad699531f7dcb7ece.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nawan#7673" data-user-id="457760460972752920" style="color: rgb(178,133,229)">立花喵喵/諸葛月/白川熒/真武澈(年糕)</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 11:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="819586387539525693" id="message-819586387539525693">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//你先想辦法活下來吧 寂靜感覺你會很...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/683888454450544658/47eda2cd618088eed379409403fef173.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="futaba#7386" data-user-id="683888454450544658" style="color: rgb(221,129,54)">futaba</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-21 11:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="819586539725914153" id="message-819586539725914153">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//<img class="emoji " alt="41" title="41" src="https://cdn.discordapp.com/emojis/816242830670037002.png">  命不久矣 我知道 <img class="emoji " alt="41" title="41" src="https://cdn.discordapp.com/emojis/816242830670037002.png"></span>
+
+                                <span class="chatlog__edited-timestamp" title="11-Mar-21 11:04 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 110 message(s)</div>
+</div>
+
+</body>
+
+</html>
