@@ -1,0 +1,5277 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>just TRPG - 追書人—三月</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="https://cdn.discordapp.com/icons/495551793992957962/cef99e1e6d6f794712a1776eaed493c6.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">just TRPG</div>
+        <div class="preamble__entry">COC已結團存放區 / 追書人—三月</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 02:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="987963231924531250" id="message-987963231924531250" title="Message sent: 19-Jun-22 02:13 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">千葉葵，一個彌生櫻一輩子都無法忘記的名字
+雖然搬到別的城市後就沒有再跟她相遇，但妳依然將相處的那幾年視為珍貴的回憶
+
+同時妳也沒想過，兩人會以這樣的契機再次回到故鄉見面
+在某一天的直播結束後，有人用私聊敲響了妳的視窗
+當妳點開通知，是那熟悉的名字及頭像
+而訊息的內容也很簡單明瞭
+
+「我家發生了神祕事件，要一起來調查嗎？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 02:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="987965342900949022" id="message-987965342900949022" title="Message sent: 19-Jun-22 02:21 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">微愣了一會兒後鬆開沉思間不經意皺起的眉頭，在手機訊息中給出肯定的答覆，便將自己接下來一小段時間的行程排開來，也在社群上向追隨者說了過幾日不會開實況的事後，邊訂回去的車票邊拉過行李箱收拾好，踏上回去故鄉的路途。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 02:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="987968682372247573" id="message-987968682372247573" title="Message sent: 19-Jun-22 02:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">回到故鄉後，前來迎接妳的葵還是一如既往的太妹樣，唯一讓妳驚奇的就是對方有了駕照吧
+在對方家裡安置好後，她便準備帶妳前往這次發生事件的地點
+奇怪的是，妳們並沒有在她家逗留，而是出了大門，坐上車，不知道要去哪裡</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 02:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="987969828293869568" id="message-987969828293869568" title="Message sent: 19-Jun-22 02:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">看著車窗外的和記憶中一樣卻有些微不同的房子和道路，我看著葵開口問了：「是什麼樣子的神秘事件？不是在你家中發生的嗎？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 03:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="987975246441218078" id="message-987975246441218078" title="Message sent: 19-Jun-22 03:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「硬要說的話，是在我叔叔家啦。」
+說話的同時，葵還是穩穩地握著方向盤
+
+「簡單來說，叔叔他已經失蹤一年了，至今一點消息都沒有。
+雖然死亡宣告要等七年啦……但我看有些親戚已經坐不住了，所以才會鬧出這件事。」
+
+「其他親戚去整理他的東西時，發現他的東西被偷了不少，就算報警也草草結案。
+不過嘛，想也知道這種事肯定怪怪的！」</span>
+
+                                <span class="chatlog__edited-timestamp" title="19-Jun-22 03:02 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 03:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="987978254705119302" id="message-987978254705119302" title="Message sent: 19-Jun-22 03:12 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「......我聽說這是神秘事件才立刻趕過來的，怎麼東西不見來找我幫忙？」忍著想要對對方翻白眼的衝動，將視線投回前方的道路，默默思索有關葵的叔叔的資料。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 03:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="987980587711230014" id="message-987980587711230014" title="Message sent: 19-Jun-22 03:22 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「那是因為妳不知道被偷的是什麼。」
+妳從後照鏡看到駕駛很是興奮的樣子
+
+「叔叔他啊，是在親戚間有名的書籍收藏家，雖然孤僻又喜歡一個人住，但大家都知道他的收藏價值多少，這也是才一年就有人想接收他財產的原因。」
+
+「被偷的東西也不用說，就是書，不過嘛……」
+
+說著說著，她踩了煞車，不知不覺妳們已經到了門口，四周的景觀很是偏僻，屋子也是木造的獨棟，確實是一人獨居的完美地點
+她從駕駛座上轉過頭來看著妳
+
+「大家都只覺得被偷的是昂貴的書籍，但我在叔叔的書房確認過了，被偷的都是神祕學相關的書啊！
+哪有這麼巧的事！」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="987981653790035968" id="message-987981653790035968" title="Message sent: 19-Jun-22 03:26 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">對話間妳似乎想起了國中時葵拿來給妳看的那幾本書，看來來源就是她的叔叔了</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 03:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="987984424605974548" id="message-987984424605974548" title="Message sent: 19-Jun-22 03:37 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「這樣啊，那我們來這邊應該不會有麻煩吧？」下車才把口罩取下放入隨身背包中，露出了個頗有興味也同樣興奮的笑容回身對葵說道：「唔嗯......神祕學啊，說不定是有個也想要探索神秘的小偷呢？也或許是書本的主人想要將書本取回呢？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 03:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="987988291762659379" id="message-987988291762659379" title="Message sent: 19-Jun-22 03:52 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「難得的同好，總要知道對方是誰啊。」
+葵下了車後便熟練地從口袋掏出鑰匙開門，從堆積在信箱的信件妳看到了這位素昧平生的人名叫千葉道雄
+
+「但如果是原主人……我還真想不出他沒事用偷的幹嘛。」
+
+開了門後妳們直接來到書房，裡面堆積的藏書量瞬間讓妳了解了那些親戚爭搶的原因
+即使沒人知道其中的價值，光是名作的部分就已經堆了一部分空間，從絕版封面到精裝套應有盡有
+
+葵帶著妳走到一面書櫃前，妳在其中看到了幾本熟悉的書
+「照剩下的量來看，那個人絕對還會再來，問題是要怎麼逮到他。」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 04:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="987990150430728204" id="message-987990150430728204" title="Message sent: 19-Jun-22 04:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「你叔叔失蹤前有跟什麼人接觸嗎？」我仔細瀏覽了那一面書櫃，輕抽了本書翻看下再放回，又看了眼窗戶跟書桌的位置，思索著說道：「陷阱嗎？要考慮到很多方面，比如對方會經過的位置、陷阱設置跟安全問題之類的吧？如果是埋伏也要看我們打不打得贏，能否將對方留下之類的問題。」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 04:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="987992315601780736" id="message-987992315601780736" title="Message sent: 19-Jun-22 04:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">葵想了一下
+「熟人的話我印象中沒有……道叔就連家庭聚會也很少到，書的話多半都是去書店或跳蚤市場買。」
+
+關於埋伏的提案這位太妹某種意義上倒是熟門熟路
+「……兩人份的防狼電擊棒怎麼樣？」</span>
+
+                                <span class="chatlog__edited-timestamp" title="19-Jun-22 04:15 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 04:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="987994597236039680" id="message-987994597236039680" title="Message sent: 19-Jun-22 04:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「......然後拿著電擊槍躲在書桌下面嗎？」抽了抽嘴角，忍著笑意走到書桌旁示意能否打開抽屜看看，一邊看著桌面上有沒有值得注意的東西。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="三月羽羋#1145" style="color: rgb(250,202,237)">三月羽羋</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;987994597236039680&#39;)">
+「......然後拿著電擊槍躲在書桌下面嗎？」抽了抽嘴角，忍著笑意走到書桌旁示意能否打開抽屜看看，一邊看著桌面上有沒有值得注意的東西。                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 04:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="987995574781481021" id="message-987995574781481021" title="Message sent: 19-Jun-22 04:21 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">過個偵查或圖書館看看</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 04:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="987996204073889874" id="message-987996204073889874" title="Message sent: 19-Jun-22 04:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//在這邊骰嗎  要骰多少<img loading="lazy" class="emoji " alt="stare" title="stare" src="https://cdn.discordapp.com/emojis/964794027448877077.png"></span>
+
+                                <span class="chatlog__edited-timestamp" title="19-Jun-22 04:25 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 04:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="987996358466224128" id="message-987996358466224128" title="Message sent: 19-Jun-22 04:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//妳要過哪個就在這邊骰 cc 技能數字</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 04:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="987996866018959370" id="message-987996866018959370" title="Message sent: 19-Jun-22 04:26 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//是一般成功那欄嗎</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 04:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="987996963167420436" id="message-987996963167420436" title="Message sent: 19-Jun-22 04:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//沒錯</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 04:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="987997153282650132" id="message-987997153282650132" title="Message sent: 19-Jun-22 04:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">cc 80</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(224,42,107)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Jun-22 04:27 PM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="987997155631460372" id="message-987997155631460372" title="Message sent: 19-Jun-22 04:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="三月羽羋#1145">@三月羽羋</span> 
+1D100 ≦ 80　
+62 → 通常成功</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 04:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="987999663334506497" id="message-987999663334506497" title="Message sent: 19-Jun-22 04:37 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">一旁的友人沒說什麼，看來是隨便妳亂摸了
+桌面上的東西被清了，看起來沒有什麼東西
+
+抽屜堆積的文件在妳一陣翻找下，倒是發現了有點意思的東西
+一篇被刻意剪下來的報導
+<div class="pre pre--multiline nohighlight">……根據居民投訴，附近的墓地經常出現不明人影
+警方接到報案後即刻前往，但沒在墓地或離開的路上見到報案民眾指稱的「多人夜聚」
+目前正在釐清是否為報假案，但附近駐紮員警宣稱，這其實已經不是第一起相關報案……</div>
+跟報導收在一起的還有一張照片，上面有著凌亂且看不出是什麼東西的腳印
+從照片角落的墓碑看來，拍攝地點在墓地無誤</span>
+
+                                <span class="chatlog__edited-timestamp" title="19-Jun-22 05:23 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 04:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="988001301344448552" id="message-988001301344448552" title="Message sent: 19-Jun-22 04:44 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「葵你看，這邊有一個報導跟照片，好像跟墓地有關，你有認識的地點嗎？」我將東西正反面翻看了下，然後遞給葵。</span>
+
+                                <span class="chatlog__edited-timestamp" title="19-Jun-22 04:44 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 04:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="988002450642464798" id="message-988002450642464798" title="Message sent: 19-Jun-22 04:49 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「附近正好有一個墓地。」
+葵湊過來看了看妳手上的照片和報導
+
+「嗯，是那邊沒錯，這也是神秘事件？跟叔叔有關的？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 04:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="988004968558649344" id="message-988004968558649344" title="Message sent: 19-Jun-22 04:59 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「就目前這樣有限的情報應該是這樣沒錯。」沉吟了一會，回頭問說：「書本被偷有頻率嗎？那個墓地距離這邊大概多久可以到達？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 05:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="988006266418896976" id="message-988006266418896976" title="Message sent: 19-Jun-22 05:04 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「以頻率來說，那個小偷應該在兩天內光顧。」
+葵看了看窗外，太陽似乎快下山了
+「墓地只要走路10分鐘而已，簡單啦～」
+
+她笑嘻嘻地看著妳，似乎想讓妳決定該怎麼辦</span>
+
+                                <span class="chatlog__edited-timestamp" title="19-Jun-22 05:05 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 05:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="988009596335583232" id="message-988009596335583232" title="Message sent: 19-Jun-22 05:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「嗯......那我們去稍微看一眼就回來吧，今晚先回你家準備需要的東西？」同樣看向窗外，似乎還有半個小時左右的時間才會完全下山。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 05:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="988009996056948747" id="message-988009996056948747" title="Message sent: 19-Jun-22 05:18 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">她向妳比了個OK，然後就準備前往墓地了</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <span class="chatlog__reference-unknown">
+                    Original message was deleted or could not be loaded.
+                </span>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-22 05:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="988010928861749288" id="message-988010928861749288" title="Message sent: 19-Jun-22 05:22 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pinned a message.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-22 10:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="988444980467097691" id="message-988444980467097691" title="Message sent: 20-Jun-22 10:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">來到墓地後，這裡……
+嗯……看起來就是個普通的墓地，除了一位看起來像是管理員的老伯外，就沒有其他人了</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-22 10:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="988447646748405820" id="message-988447646748405820" title="Message sent: 20-Jun-22 10:18 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">跟葵對看一眼後，我邊接近那位疑似管理員的人邊展露出得體的微笑問道：「伯伯，請問這片墓地是由您管理的嗎？您認識居住在這附近的人嗎？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-22 10:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="988448601506197585" id="message-988448601506197585" title="Message sent: 20-Jun-22 10:21 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">對方慢慢的向妳點了點頭，同時和藹地詢問
+「伯伯已經處理這邊十幾年了，附近的人當然都認識啊，請問妳們是……？」</span>
+
+                                <span class="chatlog__edited-timestamp" title="20-Jun-22 10:22 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-22 10:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="988450756833181717" id="message-988450756833181717" title="Message sent: 20-Jun-22 10:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「啊！抱歉忘了自我介紹，您好！這位是居住於附近的千葉道雄的姪女，我是她的同學，我們在她叔叔那邊偶然看到了一篇有關於這個墓地的剪報，就想來這邊看看，請問您知道任何這個墓地的故事或事件嗎？」禮貌地微笑著一邊自我介紹一邊解釋來意，有些話並沒有完全說出口，似乎想要試探些什麼。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-22 10:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="988452162675806238" id="message-988452162675806238" title="Message sent: 20-Jun-22 10:36 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「千葉道雄……啊，是那件事啊～」
+聽到這個名字後，老伯好像明白了什麼
+
+「妳們是瞞著大人來的？有些事還是回家去問問就好，別隨便過來啊，再晚就有可能有危險了。」
+或許是對家中小孩的習慣吧，他伸出手想要摸摸妳的腦袋
+但仔細看了看妳們倆的身形，最終還是縮回了長滿繭的手</span>
+
+                                <span class="chatlog__edited-timestamp" title="20-Jun-22 10:36 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-22 10:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="988454503470727168" id="message-988454503470727168" title="Message sent: 20-Jun-22 10:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「伯伯您不能告訴或提點我們一些線索嗎？」抿起嘴，眨了眨眼做出一副可憐的模樣，繼續說：「叔叔他失蹤後沒有人可以告訴我們所以才來找您的......而且我們已經成年了，可以對自己的行為負責的！」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-22 10:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="988456071465152552" id="message-988456071465152552" title="Message sent: 20-Jun-22 10:51 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">看到女孩子賣萌的管理員不但沒有因此心軟，反而還愣住了
+「妳說他……失蹤了？」
+
+眼前的老人雙眼瞪大了一瞬，一副不敢置信的樣子
+
+「喂！老伯你沒事吧！」
+葵的聲音忽然變大，這也難怪
+現在兩人眼前的管理員臉色泛白，好像後知後覺地想到了什麼恐怖的事情</span>
+
+                                <span class="chatlog__edited-timestamp" title="20-Jun-22 10:51 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-22 10:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="988457604432932904" id="message-988457604432932904" title="Message sent: 20-Jun-22 10:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">看到管理員的不對勁，快速明白事情並不在對方預料中，於是又皺了眉頭狀似苦惱地緩緩說道：「伯伯您不知道嗎？叔叔他於一年前就失蹤了，並且家中的書本會莫名消失......您是否知道緣由呢？」邊說邊拿出了從書房得到的照片展示給對方。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-22 11:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="988459939309715506" id="message-988459939309715506" title="Message sent: 20-Jun-22 11:06 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">管理員深呼吸了幾下，這才讓臉色看起來正常些
+「唉……這行作久了，真的是什麼怪事都能碰到。」
+
+他看了看照片，這次倒是沒有太大的反應
+「先是這些奇怪的腳印，然後又是千葉先生……
+妳說他失蹤了一年，我倒是最近還在這附近見過他。」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-22 11:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="988461066466000976" id="message-988461066466000976" title="Message sent: 20-Jun-22 11:11 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「叔叔的狀態是正常的嗎？最近有沒有什麼奇怪的人出入過這邊呢？」收起照片疑惑地看了眼葵，似乎在表示對方的說法跟葵的說法對不起來。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-22 11:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="988462956075446272" id="message-988462956075446272" title="Message sent: 20-Jun-22 11:18 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">葵也用口形默默地回答妳
+「わ・か・な・い！」（我、不、知、道！）
+
+管理員聽到這件事後也擔心的說著
+「既然他已經失蹤，那就是該找警察或專家幫忙的事了，就算你們成年了，伯伯還是不放心啊……」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-22 11:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="988464468029767711" id="message-988464468029767711" title="Message sent: 20-Jun-22 11:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">轉過頭在只有葵能看到的角度對她翻了白眼，然後若無其事地轉回頭誠懇地說道：「已經找過警察，但是完全被敷衍帶過了，所以我們才會自己來調查......拜託了！如果有任何線索還請告訴我們！」對著管理員鞠了一躬，用著低姿態拜託對方。</span>
+
+                                <span class="chatlog__edited-timestamp" title="20-Jun-22 11:26 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-22 11:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="988465016623742986" id="message-988465016623742986" title="Message sent: 20-Jun-22 11:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">過個說服吧</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-22 11:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="988465310858375288" id="message-988465310858375288" title="Message sent: 20-Jun-22 11:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">cc 30</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(224,42,107)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Jun-22 11:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="988465318143873034" id="message-988465318143873034" title="Message sent: 20-Jun-22 11:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="三月羽羋#1145">@三月羽羋</span> 
+1D100 ≦ 30　
+56 → 失敗</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="BGD_kokoroXx">
+                                <img class="emoji emoji--small" alt="BGD_kokoroXx" src="https://cdn.discordapp.com/emojis/628432366725234688.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-22 11:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="988465532191801395" id="message-988465532191801395" title="Message sent: 20-Jun-22 11:29 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//叫你燒有點不現實……直接判定吧</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-22 11:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="988467554907463690" id="message-988467554907463690" title="Message sent: 20-Jun-22 11:37 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「這……坦白說我現在也不確定這幾天看到的人是不是他了。」
+
+老伯搔著頭，有點無奈的說
+「我當管理員的這段期間，他常常在半夜一個人來墓地看書
+問了幾次之後我就不管了，這幾天還一直在老地方看到有人影坐在地上，所以我以為……
+抱歉啊，因為以為是熟人我就沒去看是誰在那邊了。」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-22 11:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="988469010314195085" id="message-988469010314195085" title="Message sent: 20-Jun-22 11:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「非常謝謝您，請問那個老地方是在哪個位置呢？」微微向對方點下頭，決定在問完這個問題之後，就先不要再叨擾對方。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-22 11:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="988470828721123329" id="message-988470828721123329" title="Message sent: 20-Jun-22 11:50 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">管理員搖了搖頭，最終還是沒有鬆口
+
+「唉……真的不是伯伯要掃你們的興，
+只是……做這行的人都知道，有些東西不要追究比較好，
+既然警察不理你們，那到時候就我來報吧，畢竟上次的『多人聚集』還沒結案呢，總有人會理的。」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-22 11:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="988471554054684712" id="message-988471554054684712" title="Message sent: 20-Jun-22 11:53 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「好吧......非常謝謝您，打擾了。」禮貌地向對方彎身道別，跟葵對看一眼，看了天色，決定今天先打道回府，準備些必須的物品或是調查一下當年的事件。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-22 11:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="988472893140791476" id="message-988472893140791476" title="Message sent: 20-Jun-22 11:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「打擾你了。」
+葵簡單地向老伯點頭示意，看了妳一眼，細不可察地嘆了一口氣，雙手交叉在後枕著頭，就這麼跟妳回去了
+
+走出一段距離後，她便開始跟妳討論起來
+「欸，有想到什麼計畫嗎？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">21-Jun-22 12:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="988474806376726558" id="message-988474806376726558" title="Message sent: 21-Jun-22 12:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「怎麼了嘆什麼氣呀？哎呀，我真的不擅長跟陌生人接觸啊......」笑了笑舒緩下氣氛，邊踢路邊的石頭，邊沉思了一會說道：「是有兩個方案可以同時進行，一個是像你說的埋伏那位小偷先生，另一個呢，避開那位管理員偷偷調查究竟老地方是在哪裏，那個照片不是有相關線索嗎，在白天去也許可以避開危險，而今晚呢，就在網路上搜索看看當年事件跟獲取埋伏或著探索需要的物品，怎麼樣？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">21-Jun-22 12:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="988478319534149732" id="message-988478319534149732" title="Message sent: 21-Jun-22 12:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「不是在嘆妳啦！就是……如果那是道叔或那人認識他的話……雖然我們沒聊過多少，但我果然還是想知道他為什麼要突然消失。」
+
+葵的表情比起落寞更像是興奮，雖然在一般人眼中看來這有點奇怪，但對於以神祕學書籍為契機，連結在一起的他們兩位來說，如此面對對方遺留的謎才是屬於他們的風格吧
+
+「另外啊，雖然我說最晚那個小偷會明天光顧，但今晚對方犯案的可能性也不低。
+況且妳也聽到老伯說的了，明晚警察就有可能去搜墓地，我在想，要不要乾脆今晚來拚一把？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">21-Jun-22 12:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="988480364186042498" id="message-988480364186042498" title="Message sent: 21-Jun-22 12:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「也許那位管理員真的有什麼難言之隱吧，今晚行動麼......」邊走邊將背包背到正面，翻看了下裡面的物品，皺了眉頭說道：「你是說墓地還是埋伏，我這邊能有控制或攻擊手段的頂多防狼噴霧、筆或鑰匙，還是你帶了電擊槍？或是房子裡面有什麼物品可以應用的？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/568013103866839060/a29bc54ab82676d659d039c9146c1c4e.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="刻爾洛斯#4196" data-user-id="568013103866839060" style="color: rgb(52,152,219)">執行官</span>
+
+
+        <span class="chatlog__timestamp">21-Jun-22 12:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="988481044879659008" id="message-988481044879659008" title="Message sent: 21-Jun-22 12:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//為毛你們只以人為陷阱咧<img loading="lazy" class="emoji " alt="14" title="14" src="https://cdn.discordapp.com/emojis/738060592597827604.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="14">
+                                <img class="emoji emoji--small" alt="14" src="https://cdn.discordapp.com/emojis/738060592597827604.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">21-Jun-22 12:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="988481371523670056" id="message-988481371523670056" title="Message sent: 21-Jun-22 12:32 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//神話0當然以人為預設對象啊<img loading="lazy" class="emoji " alt="14" title="14" src="https://cdn.discordapp.com/emojis/738060592597827604.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">21-Jun-22 12:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="988481383968157836" id="message-988481383968157836" title="Message sent: 21-Jun-22 12:32 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//別人家會有童軍繩嗎<img loading="lazy" class="emoji " alt="14" title="14" src="https://cdn.discordapp.com/emojis/738060592597827604.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">21-Jun-22 12:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="988481464851107912" id="message-988481464851107912" title="Message sent: 21-Jun-22 12:32 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//別人不知道，我家是有啦</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="988481603154088017" id="message-988481603154088017" title="Message sent: 21-Jun-22 12:32 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//曬衣繩的話就每家都會有吧</span>
+
+                                <span class="chatlog__edited-timestamp" title="21-Jun-22 12:33 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="48">
+                                <img class="emoji emoji--small" alt="48" src="https://cdn.discordapp.com/emojis/824214117106974720.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">21-Jun-22 12:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="988482013730320435" id="message-988482013730320435" title="Message sent: 21-Jun-22 12:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//我家還可以把曬衣竿拆下來</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">21-Jun-22 12:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="988482377410019390" id="message-988482377410019390" title="Message sent: 21-Jun-22 12:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「當然有帶啊。」
+葵從自己的背包拿出一根電擊棒交給妳
+
+「其他的……從家裡A一段曬衣繩當陷阱應該可以吧，或是做辣椒粉袋放在門口……」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="988482676979826718" id="message-988482676979826718" title="Message sent: 21-Jun-22 12:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//說到曬衣竿，我家的也可以拆喔<img loading="lazy" class="emoji " alt="41" title="41" src="https://cdn.discordapp.com/emojis/816242830670037002.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="48">
+                                <img class="emoji emoji--small" alt="48" src="https://cdn.discordapp.com/emojis/824214117106974720.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">21-Jun-22 12:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="988484228004061214" id="message-988484228004061214" title="Message sent: 21-Jun-22 12:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「......啊，謝謝。」用毫無感激之意的平靜語氣說著，然後把電擊棒放進口袋中，猶豫了一會兒就下定決心地說著：「那就今晚暫住在這兒吧，不知道小偷先生什麼時候會來，趕緊布置些陷阱之類的在進出口跟窗戶的地方，然後輪流休息以免精神不濟，我們要躲在哪兒，書桌底下嗎，還是有其他地方可以躲藏？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">21-Jun-22 12:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="988485122628149278" id="message-988485122628149278" title="Message sent: 21-Jun-22 12:46 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「嗯，既然小偷只偷神祕學書籍……」
+葵思考了一下
+「那我們把那類的書堆一部分在書桌上，人躲在書櫃間的縫隙怎麼樣？」</span>
+
+                                <span class="chatlog__edited-timestamp" title="21-Jun-22 12:47 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">21-Jun-22 12:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="988486671504904312" id="message-988486671504904312" title="Message sent: 21-Jun-22 12:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「可是小偷先生已經來過了，如果將對方目標直接堆放在桌子上目的會太過明顯吧，就像是跟對方說，嘿～我們知道你來過了～我們在等你喔！」不知不覺已經走回到房屋的門前，等待對方開門的空檔再提議說：「不如將其他種類的書籍拿取到別的房間，躲在那些縫隙裡，然後就可以趁對方將書本抽出，比較沒有警戒心的時候再襲擊？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">21-Jun-22 12:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="988487616833921175" id="message-988487616833921175" title="Message sent: 21-Jun-22 12:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「嗯……說的也是。
+門一定得鎖，不然他就會知道有人，窗戶呢？關上不鎖拐他爬窗？」</span>
+
+                                <span class="chatlog__edited-timestamp" title="21-Jun-22 12:57 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">21-Jun-22 01:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="988488718933454970" id="message-988488718933454970" title="Message sent: 21-Jun-22 01:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「我覺得就都不要動，之前怎樣現在就怎樣，還好今晚的月光還不錯，不然我們可能要摸黑了。」看了皎潔的月光，忽然有種感嘆，怎麼一回到故鄉就要進行這樣奇怪的行動。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">21-Jun-22 01:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="988489891157516378" id="message-988489891157516378" title="Message sent: 21-Jun-22 01:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">葵準備鎖門的手停了一下，轉頭看向身後的好友
+「為什麼我總覺得妳正在心裡抱怨我特地找妳回來就為了搞事情……」</span>
+
+                                <span class="chatlog__edited-timestamp" title="21-Jun-22 01:06 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">21-Jun-22 01:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="988491262606848150" id="message-988491262606848150" title="Message sent: 21-Jun-22 01:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「呵呵......我親愛的朋友，我認識你這麼久，我只知道你無時無刻都在搞事情。」看著對方的視線不小心就笑了出來，揶揄的口氣似乎沒有任何惡意並帶著些許親近，然後開始四處走走蒐集了些繩子、棍、桶之類可以利用跟拆卸下來的物品開始思索怎麼佈置陷阱。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 10:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="989896948611969034" id="message-989896948611969034" title="Message sent: 24-Jun-22 10:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//嗯……想了想感覺不太好插，我覺得這邊你就直接繼續接下去該怎麼布置好了</span>
+
+                                <span class="chatlog__edited-timestamp" title="24-Jun-22 10:18 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="53">
+                                <img class="emoji emoji--small" alt="53" src="https://cdn.discordapp.com/emojis/852338123669110814.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 10:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="989899781851742281" id="message-989899781851742281" title="Message sent: 24-Jun-22 10:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//忘記問叔叔家的配置了  還是都給我掰<img loading="lazy" class="emoji " alt="14" title="14" src="https://cdn.discordapp.com/emojis/738060592597827604.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 10:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="989900048412323860" id="message-989900048412323860" title="Message sent: 24-Jun-22 10:29 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//掰起來！其實就是個普通獨棟，書房特別擴建的那種</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 10:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="989900245448142888" id="message-989900245448142888" title="Message sent: 24-Jun-22 10:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//書房在二樓嗎<img loading="lazy" class="emoji " alt="53" title="53" src="https://cdn.discordapp.com/emojis/852338123669110814.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 10:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="989900483965640755" id="message-989900483965640755" title="Message sent: 24-Jun-22 10:31 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//書房格局就是一樓接客廳，門旁書櫃一堆（書則是多到去堆地板），外加辦公式書桌和一扇窗</span>
+
+                                <span class="chatlog__edited-timestamp" title="24-Jun-22 10:32 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="48">
+                                <img class="emoji emoji--small" alt="48" src="https://cdn.discordapp.com/emojis/824214117106974720.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 10:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="989906952530329641" id="message-989906952530329641" title="Message sent: 24-Jun-22 10:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「我決定採納你的意見，怎麼樣？」對葵笑了笑，在門口設置一個只要想要打開門離開就會被辣椒粉砸滿臉的裝置；將神祕學隔壁的書櫃的書抽些出來製造能夠躲藏的空間，而那些書就放在靠近窗戶的地板放置一小堆真空的書堆，裡面藏了打成結的繩圈；把武器從背包拿出之後把會佔空間的物品先藏在了浴室中，然後把棍子藏在靠近躲藏點的地上；窗戶的部分則只在外側窗框塗抹了有潤滑效果但沒什麼味道的油，這樣就會阻礙對方想要爬出的動作；然後思考了一下，在神祕學的書櫃上面放置了一杯辣椒粉泡成的水，在杯子底下墊了兩支筆，並在外側的筆上纏繞線連到書本前方壓住，只要對方想要拿取書本就會被水直接從頭潑下。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 11:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="989909020720656444" id="message-989909020720656444" title="Message sent: 24-Jun-22 11:05 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「我怎麼覺得妳搞起事來比我還狠……」這是葵在研究完現場的感想
+她接著思考一下後，最後小心地將辣椒水取下
+
+「這個還是不要用好了，萬一把書毀了我覺得到時候會被罵死。」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 11:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="989911686955827220" id="message-989911686955827220" title="Message sent: 24-Jun-22 11:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">嘴角勾起莫名的笑容，從各種情況的模擬中脫離出來，並沒有阻止葵將水杯拿下，只是清清喉嚨說道：「你知道歷史就是把過去所發生的事情當作未來的提示，雖然人類還是會一直重複些錯誤，因為人類就是個不長記性的物種。言歸正傳，我們可以從一些情境來模擬未來會發生的事情，我主要的思路就是獵物的逃生路徑跟誘餌本身，並圍繞著讓對方陷入後會怎麼想辦法掙脫，在這個時候！我不是彌生櫻而是那名獵物，這就是換位思考。」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 11:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="989912775222509608" id="message-989912775222509608" title="Message sent: 24-Jun-22 11:19 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「總之就是想辦法預測小偷在慌了後會發生什麼事就對了。」
+葵抽了抽嘴角，吐槽間也不忘開始布置能躲人的空間，準備等小偷光顧</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 11:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="989913825623031899" id="message-989913825623031899" title="Message sent: 24-Jun-22 11:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「也許小偷不會慌，說不定他已經看到我們了也說不定呢？」提出了一個假設後，把窗戶門窗都鎖好，小心翼翼避開布置好的陷阱，躲在了自己布置的空間中，又把旁邊閒置的書拿來遮掩自己，以免一眼就被看到，最後一手拿著電擊棒一手拿著防狼噴霧。</span>
+
+                                <span class="chatlog__edited-timestamp" title="24-Jun-22 11:26 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 11:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="989914309461155890" id="message-989914309461155890" title="Message sent: 24-Jun-22 11:26 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">在黑暗的等待過程中，來過個聆聽＆幸運吧</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 11:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="989914517356032000" id="message-989914517356032000" title="Message sent: 24-Jun-22 11:26 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">CC 80</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(224,42,107)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jun-22 11:26 PM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="989914524268257350" id="message-989914524268257350" title="Message sent: 24-Jun-22 11:26 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="三月羽羋#1145">@三月羽羋</span> 
+1D100 ≦ 80　
+37 → 困難成功</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="zrushBee">
+                                <img class="emoji emoji--small" alt="zrushBee" src="https://cdn.discordapp.com/emojis/959730433514422282.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 11:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="989914588579516467" id="message-989914588579516467" title="Message sent: 24-Jun-22 11:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//過聆聽<img loading="lazy" class="emoji " alt="48" title="48" src="https://cdn.discordapp.com/emojis/824214117106974720.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 11:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="989914747120017438" id="message-989914747120017438" title="Message sent: 24-Jun-22 11:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//幸運也要喔<img loading="lazy" class="emoji " alt="41" title="41" src="https://cdn.discordapp.com/emojis/816242830670037002.png"> 上面的是and不是or</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 11:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="989914948140429332" id="message-989914948140429332" title="Message sent: 24-Jun-22 11:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//喔喔<img loading="lazy" class="emoji " alt="48" title="48" src="https://cdn.discordapp.com/emojis/824214117106974720.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="989914988791615559" id="message-989914988791615559" title="Message sent: 24-Jun-22 11:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">CC 35</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(224,42,107)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jun-22 11:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="989914990767132742" id="message-989914990767132742" title="Message sent: 24-Jun-22 11:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="三月羽羋#1145">@三月羽羋</span> 
+1D100 ≦ 35　
+43 → 失敗</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="BGD_kokoroXx">
+                                <img class="emoji emoji--small" alt="BGD_kokoroXx" src="https://cdn.discordapp.com/emojis/628432366725234688.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <span class="chatlog__reference-unknown">
+                    Original message was deleted or could not be loaded.
+                </span>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 11:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="989915279448498176" id="message-989915279448498176" title="Message sent: 24-Jun-22 11:29 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pinned a message.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="989916445792161872" id="message-989916445792161872" title="Message sent: 24-Jun-22 11:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">dr cc 65</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(224,42,107)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jun-22 11:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="989916447373393961" id="message-989916447373393961" title="Message sent: 24-Jun-22 11:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="筱玥#2385">@小月（我想我應該是混善）</span> 暗骰給自己</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 11:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="989919842238881803" id="message-989919842238881803" title="Message sent: 24-Jun-22 11:48 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">妳們在黑暗中等了很久，從窗外的天色來看，大概在半夜時有了動靜
+妳聽到了門口傳來用鑰匙開門的聲音——但妳很清楚，目前唯一的鑰匙在葵手中
+那這聲音是……
+在妳思索間，一串腳步聲逐漸靠近門口
+
+在妳以為對方即將觸發陷阱時，開門的聲音卻遲遲沒有傳來
+取而代之的是逐漸遠去的腳步聲
+
+對方放棄了？安靜了一段時間，在妳這麼想的時候……
+框啷一聲，砸破玻璃的聲音在夜裡特別清楚，從書間的縫隙可以大概看出，一個佝僂的身影從窗戶鑽進了屋內，由於對方並不是正常開窗，所以先前抹的油絲毫不影響對方進入
+
+黑暗間，妳隱約聽到了葵短促的氣音
+「現在？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 11:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="989921618660835458" id="message-989921618660835458" title="Message sent: 24-Jun-22 11:55 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「準備。」等了一會兒，似乎發出了窸窸窣窣的聲音，一邊悄悄地通過隙縫往旁邊看了眼，一邊抬起拿著武器的雙手準備衝出去。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 11:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="989921996928348260" id="message-989921996928348260" title="Message sent: 24-Jun-22 11:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">突襲+1獎勵骰，過鬥毆</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="989922133939486780" id="message-989922133939486780" title="Message sent: 24-Jun-22 11:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//獎勵骰的指令是cc1，數字是加的數量</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 11:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="989922387527086110" id="message-989922387527086110" title="Message sent: 24-Jun-22 11:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">CC1 40</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(224,42,107)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jun-22 11:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="989922390828015736" id="message-989922390828015736" title="Message sent: 24-Jun-22 11:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="三月羽羋#1145">@三月羽羋</span> 
+1D100 ≦ 40　
+11、41 → 11 → 困難成功</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 11:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="989922454933733386" id="message-989922454933733386" title="Message sent: 24-Jun-22 11:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//這樣嗎<img loading="lazy" class="emoji " alt="14" title="14" src="https://cdn.discordapp.com/emojis/738060592597827604.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 11:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="989922610311729233" id="message-989922610311729233" title="Message sent: 24-Jun-22 11:59 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//對啊，啊你怎麼過了<img loading="lazy" class="emoji " alt="14" title="14" src="https://cdn.discordapp.com/emojis/738060592597827604.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="48">
+                                <img class="emoji emoji--small" alt="48" src="https://cdn.discordapp.com/emojis/824214117106974720.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-22 11:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="989922789148467270" id="message-989922789148467270" title="Message sent: 24-Jun-22 11:59 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//想不到吧</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 12:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="989923899145875508" id="message-989923899145875508" title="Message sent: 25-Jun-22 12:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//傷害請骰1d3</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 12:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="989924383378264104" id="message-989924383378264104" title="Message sent: 25-Jun-22 12:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">1D3</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(224,42,107)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jun-22 12:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="989924384892420156" id="message-989924384892420156" title="Message sent: 25-Jun-22 12:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="三月羽羋#1145">@三月羽羋</span> 
+1D3：
+3[3] = 3</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="14">
+                                <img class="emoji emoji--small" alt="14" src="https://cdn.discordapp.com/emojis/738060592597827604.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 12:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="989926825595633664" id="message-989926825595633664" title="Message sent: 25-Jun-22 12:15 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">彌生突然發難的攻擊顯然見效了，正在拿書的對方在遭到電擊後被定在了原地一陣子，而這段時間已經足以開燈看清對方的真面目</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="989926925445238815" id="message-989926925445238815" title="Message sent: 25-Jun-22 12:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//沒問題的話葵就去開燈囉</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 12:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="989926964422918214" id="message-989926964422918214" title="Message sent: 25-Jun-22 12:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//豪</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 12:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="989929699448856597" id="message-989929699448856597" title="Message sent: 25-Jun-22 12:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「終於逮到……」
+但是，在燈亮起的那一刻，妳們倆也愣住了
+雖然不知道葵現在的表情，但妳可以感知到，自己的眼睛正因為驚嚇而逐漸張大
+
+來者是千葉先生的熟人……當然不是這麼老梗的展開
+
+在燈亮起後，妳們直接清晰的看見對方佝僂……不，那不是駝背，更像是天生脊椎就突出一大塊
+除了身形外，還有那過度脫落的毛髮、已經可以看做蹄的腳，以及緊繃異常的皮膚，簡直就像是直接穿了一層橡膠製的皮
+眼前的人……<strong>那還是人嗎？</strong>
+
+目擊？？？
+SC 0/1d6</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 12:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="989930260734836736" id="message-989930260734836736" title="Message sent: 25-Jun-22 12:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">SC 0/1d6</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="989930334424555580" id="message-989930334424555580" title="Message sent: 25-Jun-22 12:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//打啥  救救 <img loading="lazy" class="emoji " alt="14" title="14" src="https://cdn.discordapp.com/emojis/738060592597827604.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="989930386295488572" id="message-989930386295488572" title="Message sent: 25-Jun-22 12:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">0/1d6</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(224,42,107)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jun-22 12:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="989930388002603089" id="message-989930388002603089" title="Message sent: 25-Jun-22 12:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="三月羽羋#1145">@三月羽羋</span> 
+0/1d6：
+0/1[1] = 0</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/568013103866839060/a29bc54ab82676d659d039c9146c1c4e.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="刻爾洛斯#4196" data-user-id="568013103866839060" style="color: rgb(52,152,219)">執行官</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 12:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="989930425755525191" id="message-989930425755525191" title="Message sent: 25-Jun-22 12:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//.Sc 你的理智 要扣的理智</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 12:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="989930528373370921" id="message-989930528373370921" title="Message sent: 25-Jun-22 12:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//喔喔</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="989930829696368680" id="message-989930829696368680" title="Message sent: 25-Jun-22 12:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">sc 75 1d6</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="989930901867724840" id="message-989930901867724840" title="Message sent: 25-Jun-22 12:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//為什麼  這個神奇魔法窩不會<img loading="lazy" class="emoji " alt="Pepe_Cry2" title="Pepe_Cry2" src="https://cdn.discordapp.com/emojis/650637092757700628.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 12:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="989931040627904563" id="message-989931040627904563" title="Message sent: 25-Jun-22 12:32 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//一樣cc就好，成功骰/前面，失敗骰/後面</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="48">
+                                <img class="emoji emoji--small" alt="48" src="https://cdn.discordapp.com/emojis/824214117106974720.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 12:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="989931860442353724" id="message-989931860442353724" title="Message sent: 25-Jun-22 12:35 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//理智的成功骰跟失敗骰是看等級難度那欄嗎</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 12:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="989932511691939940" id="message-989932511691939940" title="Message sent: 25-Jun-22 12:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//沒，就是單純的成功失敗</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/568013103866839060/a29bc54ab82676d659d039c9146c1c4e.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="刻爾洛斯#4196" data-user-id="568013103866839060" style="color: rgb(52,152,219)">執行官</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 12:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="989932847123038260" id="message-989932847123038260" title="Message sent: 25-Jun-22 12:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">.Sc 75 0/1d6</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(224,42,107)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jun-22 12:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="989932848326791179" id="message-989932848326791179" title="Message sent: 25-Jun-22 12:39 AM">
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(0,153,255,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+                                            <div class="chatlog__embed-author">
+                                                    <img class="chatlog__embed-author-icon" src="https://images-ext-1.discordapp.net/external/3Lx0rapR2hJBS4woEUa0_oDMavhu5ifHB9TpeWhte0c/https/user-images.githubusercontent.com/23254376/113255717-bd47a300-92fa-11eb-90f2-7ebd00cd372f.png" alt="Author icon" loading="lazy" onerror="this.style.visibility='hidden'">
+
+                                                    <span class="chatlog__embed-author-name">
+                                                            <a class="chatlog__embed-author-name-link" href="https://www.patreon.com/HKTRPG">HKTRPG</a>
+                                                    </span>
+                                            </div>
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace"><span class="mention" title="刻爾洛斯#4196">@執行官</span> 
+San Check
+1d100 ≦ 75
+擲出:97 → 失敗!
+失去1點San
+現在San值是74點</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 12:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="989932878492225578" id="message-989932878492225578" title="Message sent: 25-Jun-22 12:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//喔喔喔</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/568013103866839060/a29bc54ab82676d659d039c9146c1c4e.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="刻爾洛斯#4196" data-user-id="568013103866839060" style="color: rgb(52,152,219)">執行官</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 12:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="989932938026168340" id="message-989932938026168340" title="Message sent: 25-Jun-22 12:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//草，我還大失敗<img loading="lazy" class="emoji " alt="14" title="14" src="https://cdn.discordapp.com/emojis/738060592597827604.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 12:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="989933003918676008" id="message-989933003918676008" title="Message sent: 25-Jun-22 12:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">.Sc 75 0/1d6</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(224,42,107)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jun-22 12:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="989933005776777266" id="message-989933005776777266" title="Message sent: 25-Jun-22 12:40 AM">
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(0,153,255,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+                                            <div class="chatlog__embed-author">
+                                                    <img class="chatlog__embed-author-icon" src="https://images-ext-1.discordapp.net/external/3Lx0rapR2hJBS4woEUa0_oDMavhu5ifHB9TpeWhte0c/https/user-images.githubusercontent.com/23254376/113255717-bd47a300-92fa-11eb-90f2-7ebd00cd372f.png" alt="Author icon" loading="lazy" onerror="this.style.visibility='hidden'">
+
+                                                    <span class="chatlog__embed-author-name">
+                                                            <a class="chatlog__embed-author-name-link" href="https://www.patreon.com/HKTRPG">HKTRPG</a>
+                                                    </span>
+                                            </div>
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace"><span class="mention" title="三月羽羋#1145">@三月羽羋</span> 
+San Check
+1d100 ≦ 75
+擲出:10 → 成功!
+失去0點San
+現在San值是75點</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 12:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="989933051150761985" id="message-989933051150761985" title="Message sent: 25-Jun-22 12:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//原來是這樣<img loading="lazy" class="emoji " alt="14" title="14" src="https://cdn.discordapp.com/emojis/738060592597827604.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="989933144645992468" id="message-989933144645992468" title="Message sent: 25-Jun-22 12:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//我覺得我像個麻瓜<img loading="lazy" class="emoji " alt="53" title="53" src="https://cdn.discordapp.com/emojis/852338123669110814.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 12:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="989933178842148864" id="message-989933178842148864" title="Message sent: 25-Jun-22 12:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//你還幫人家洗骰子咧<img loading="lazy" class="emoji " alt="14" title="14" src="https://cdn.discordapp.com/emojis/738060592597827604.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="14">
+                                <img class="emoji emoji--small" alt="14" src="https://cdn.discordapp.com/emojis/738060592597827604.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="三月羽羋#1145" style="color: rgb(250,202,237)">三月羽羋</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;989933144645992468&#39;)">
+//我覺得我像個麻瓜<img loading="lazy" class="emoji " alt="53" title="53" src="https://cdn.discordapp.com/emojis/852338123669110814.png">                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 12:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="989933258856890458" id="message-989933258856890458" title="Message sent: 25-Jun-22 12:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//沒事，新手期都這樣</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="48">
+                                <img class="emoji emoji--small" alt="48" src="https://cdn.discordapp.com/emojis/824214117106974720.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="989933669458268240" id="message-989933669458268240" title="Message sent: 25-Jun-22 12:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">dr cc 75</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(224,42,107)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jun-22 12:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="989933670804635688" id="message-989933670804635688" title="Message sent: 25-Jun-22 12:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="筱玥#2385">@小月（我想我應該是混善）</span> 暗骰給自己</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 12:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="989934694470676570" id="message-989934694470676570" title="Message sent: 25-Jun-22 12:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">趁妳們還沒回過神來的空檔，那個奇怪的生物抱著幾本書便竄出窗戶跑走了</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="angrydog">
+                                <img class="emoji emoji--small" alt="angrydog" src="https://cdn.discordapp.com/emojis/964794027079786548.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="989935000671645717" id="message-989935000671645717" title="Message sent: 25-Jun-22 12:48 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">先反應過來的是葵
+「喂……墓地的老伯看到的該不會就是……」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 12:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="989936192827060274" id="message-989936192827060274" title="Message sent: 25-Jun-22 12:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「嗯......佝僂、彎腰、拿著書，似乎都是符合的，但那個明顯不像人？或著說......鐘樓怪人？呵，開玩笑的，或許是人變成的怪物？」從錯愕中回過神來，慶幸還好對方並沒有想要攻擊的意願，強行從詭異的心態轉換出來，還有心情開個玩笑，雖然語氣一點都沒有玩笑的意思。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 12:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="989937516083830814" id="message-989937516083830814" title="Message sent: 25-Jun-22 12:58 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「哈哈……」
+葵的表情沒有埋伏失敗的不甘心，反倒意外的笑得燦爛
+她把門邊的陷阱一把撤下，將背包背起
+
+「既然知道它會去哪就好辦了，要一起來嗎？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 01:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="989938100912394320" id="message-989938100912394320" title="Message sent: 25-Jun-22 01:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「當然了，雖然這個網子沒有捕到，但是另一個網子就不一定了。」似乎被對方的笑容感染，揚起和平常差不多的微笑，把背包跟武器整理攜帶好，跟著葵一起出了門。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 01:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="989938485790130177" id="message-989938485790130177" title="Message sent: 25-Jun-22 01:02 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「話說回來，我們這樣還要一見面就打它嗎？」
+在趕往墓地的路上，葵突然問妳</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 01:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="989939151837200466" id="message-989939151837200466" title="Message sent: 25-Jun-22 01:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「......算了吧，剛剛是因為太緊張了，如果它沒有攻擊的意願就不用打了。」聳了聳肩，無奈地想道，如果它聽得懂日語就跟它道個歉好了。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 01:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="989940438616113213" id="message-989940438616113213" title="Message sent: 25-Jun-22 01:09 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">先來過個偵查吧</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 01:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="989940638269206618" id="message-989940638269206618" title="Message sent: 25-Jun-22 01:10 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">CC 25</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(224,42,107)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jun-22 01:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="989940644476780574" id="message-989940644476780574" title="Message sent: 25-Jun-22 01:10 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="三月羽羋#1145">@三月羽羋</span> 
+1D100 ≦ 25　
+82 → 失敗</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="53">
+                                <img class="emoji emoji--small" alt="53" src="https://cdn.discordapp.com/emojis/852338123669110814.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 01:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="989941737596264488" id="message-989941737596264488" title="Message sent: 25-Jun-22 01:15 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">只能說，畢竟是大半夜，在妳們來到墓地後，還是花了一段時間在找那個有人影的墓碑
+不幸中的大幸是，在妳們翻遍墓園前對方都沒離開
+相反的，在妳們找到它時，它還正戴著一副眼鏡，看書看得津津有味</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/985809038572916756/989941737378172978/unknown.png">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/985809038572916756/989941737378172978/unknown.png" alt="Image attachment" title="Image: unknown.png (315.99 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="989942573747548191" id="message-989942573747548191" title="Message sent: 25-Jun-22 01:18 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">在妳們接近時，它一反剛才慌張逃跑的態度，反而還像是等了妳們很久一樣，用沙啞的聲音開口
+「妳們還是跟來了啊。」
+
+在聽到對方的聲音後，原本對於神秘事件很興奮的葵卻將笑容收了起來
+「道……道叔……？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 01:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="989944166911967272" id="message-989944166911967272" title="Message sent: 25-Jun-22 01:24 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「葵，你認識它？」看看葵又看看對面不知道什麼物種的生物，聽到葵喊它道叔，心裡浮現一個詭異又莫名合理的猜測，抿下唇走向前行了個禮說道：「您好，先生，很抱歉在您家中對您做了失禮的事情，但是您的這副型態是......？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 01:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="989946014494498876" id="message-989946014494498876" title="Message sent: 25-Jun-22 01:32 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「我想妳就是彌生了，葵的朋友沒幾個，更別說會跟她一起出來冒險的。」
+那個生物……千葉先生把手上的書闔上，將眼鏡摘下
+「這是一種奇怪的生物，名叫食屍鬼，要說起這件事的淵源有點麻煩……
+總之，如妳們所見，我現在成了它們的一員。」
+
+看到葵的表情時，千葉先生笑了笑，試圖讓她放輕鬆點
+「沒事的，是我主動這麼做的。」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 01:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="989947585978581132" id="message-989947585978581132" title="Message sent: 25-Jun-22 01:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">露出些許笑容點了頭回道：「是的，我是彌生櫻，非常高興能夠認識您千葉道雄先生，但是您為什麼要擊破您家的玻璃，從窗戶進入呢？另外我對您的故事非常有興趣。」眉頭微皺了起來，似乎有些不滿門口的陷阱沒觸發到。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 01:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="989949669637488730" id="message-989949669637488730" title="Message sent: 25-Jun-22 01:46 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「起初我是想從門口出入的，但我在推門進入前聞到了一點刺鼻又嗆的味道，所以就改成從窗戶了。」
+面對自己叔叔瞇起的雙眼，葵吐了吐舌頭作為回擊
+
+「至於我的故事嘛……要從我的習慣說起
+那天，我一如既往的在半夜來到這裡安靜地一個人看書，那個老伯也剛好沒值班，就和今天一樣
+然後，在我附近的一塊墓碑有了動靜——一隻食屍鬼從它挖的洞爬了出來
+我對這群生物的研究就這麼開始了。」
+
+說到這裡時它頓了頓，給妳們先消化一下這個情報量</span>
+
+                                <span class="chatlog__edited-timestamp" title="25-Jun-22 01:48 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 01:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="989950525791404072" id="message-989950525791404072" title="Message sent: 25-Jun-22 01:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「當然必須有辣椒粉了，有葵的地方就會有辣椒粉。」調侃了一下自己的摯友，藉著千葉先生的停頓迫不及待地問道：「食屍鬼都是像您一樣擁有理性的嗎？還是您是特例？它們能夠轉換人類變成食屍鬼？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 01:59 AM</span>
+
+            <div class="chatlog__message " data-message-id="989952815784943706" id="message-989952815784943706" title="Message sent: 25-Jun-22 01:59 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「自己做的陷阱就大聲承認啊！」葵不出所料的一秒揭穿
+
+雖然本人不太喜歡交際，但千葉先生對妳們的拌嘴似乎很是欣慰
+「關於這兩點嘛，首先，我確實是由食屍鬼幫忙完成轉化
+至於理性的部分，大家或多或少都有一些，除非餓瘋了或是發生了什麼非得戰鬥的事
+嗯……例如一直被攻擊，妳們選擇用交談的方式真是太好了。」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 02:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="989955069711638538" id="message-989955069711638538" title="Message sent: 25-Jun-22 02:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「呃......抱歉我當時太緊張了，畢竟事前我不知道那位小偷先生是您，至於辣椒粉是葵提議我放的，差點還多了杯辣椒水呢。」尷尬地笑了聲，旋即又認真地提問了：「為什麼您會想成為食屍鬼呢？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 02:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="989957218453586022" id="message-989957218453586022" title="Message sent: 25-Jun-22 02:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「……我一向是個愛好清靜的人。」在思索一段時間後，千葉先生開口回答道
+「而食屍鬼的作息正好遠離人群，這個幾乎不用進食和睡覺的身體也讓我有更多的時間看書和研究，雖然妳們未必能理解，但這就是我需要的。」
+
+葵大笑著點點頭
+「我想我知道，小時候還有幾次因為太吵被道叔很兇的警告，差一點被直接趕出書房。」
+
+看著妳們，千葉先生拋出了一個令人意外的消息
+「還有，雖然很突然，但今晚其實是我最後一次回來拿書。」</span>
+
+                                <span class="chatlog__edited-timestamp" title="25-Jun-22 02:17 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">25-Jun-22 02:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="989958846791422002" id="message-989958846791422002" title="Message sent: 25-Jun-22 02:23 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「不用進食和睡覺的確方便許多，但是也有一定的代價。」點點頭表示認同對方的想法但不一定認同做法，聽到最後的消息頗感意外地看向對方問：「為什麼呢？您要遠行了，擺脫曾經作為人類的自己？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">30-Jun-22 12:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="991735604503134291" id="message-991735604503134291" title="Message sent: 30-Jun-22 12:03 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">千葉先生沉默了一會，似乎在思考要向妳們透露到什麼程度
+
+「我能感覺得到……重大變故的氣息，雖然可能對人類沒影響，
+但已經身為非人的我，要去『另一邊』避難不可，其實回去拿書那麼多次已經是很任性的事了。」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">30-Jun-22 12:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="991737041924657273" id="message-991737041924657273" title="Message sent: 30-Jun-22 12:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「咦......所以不會再與您見面了嗎？」有些擔憂地微皺眉看了眼葵，然後又轉回頭說道：「您還有遺留的東西嗎？可以再回去拿。」</span>
+
+                                <span class="chatlog__edited-timestamp" title="30-Jun-22 12:09 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">30-Jun-22 12:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="991738824294137966" id="message-991738824294137966" title="Message sent: 30-Jun-22 12:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「是嗎……」
+聽到這番話的葵低垂著頭，看了看千葉先生和地上的書
+「我會想你的，叔叔。」
+「還有……謝謝你借給我的書，我交到……很多朋友。」
+
+葵笑著看向千葉先生，拍了拍妳的肩，儘管她的聲音一如往常
+但妳還是注意到，她的力道沒有往常那麼大了</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="991739426369716326" id="message-991739426369716326" title="Message sent: 30-Jun-22 12:18 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「我也很高興，沒想到能在最後一次的拜訪遇到神秘事件的同好。」
+千葉先生看了看腳邊的書籍
+
+「不過……我倒是想問問妳們，之後再遇到這種怪事時，妳們還會像這次一直查下去嗎？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">30-Jun-22 12:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="991742572538105917" id="message-991742572538105917" title="Message sent: 30-Jun-22 12:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「嗯......這不好說呢，如果某人拉著我去，我還是得去。」攤手狀似無奈但面帶微笑地回應了問題，然後正色說道：「但是如果危及她生命安全我一定會馬上拉著這個笨蛋離開的。」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">30-Jun-22 12:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="991746687439740988" id="message-991746687439740988" title="Message sent: 30-Jun-22 12:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「說得好像這件事妳沒興奮過。」
+葵用一副不相信的表情打量著妳
+「不過……我的答案也是一樣。」
+
+「這樣啊……」千葉先生打量著妳們
+「那麼，我想屋內沒有我遺留的東西了。」
+
+他一把抱起那些書，此時一旁的墓碑移了開來，露出一個漆黑，向下的大洞，這瞬間，妳們似乎明白了為什麼警察從來沒抓到墓園的入侵者，畢竟不會有人刻意打擾死者安寧
+
+「葵，剩下的神祕學書籍就拜託妳了，我想親戚裡沒有人比妳更明白它們的價值了。」
+「彌生，很高興認識妳，真沒想到第一位借書人能追著我的故事到達這裡。」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/415062201221775360/ae0c65ade459615412dfc66f27edf8c1.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="三月羽羋#1145" data-user-id="415062201221775360" style="color: rgb(250,202,237)">三月羽羋</span>
+
+
+        <span class="chatlog__timestamp">30-Jun-22 12:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="991748929613987930" id="message-991748929613987930" title="Message sent: 30-Jun-22 12:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「哎呀，說好不要總拆對方檯的嘛......」吐了吐舌，臉上掛起開心的笑容，向千葉先生行了個禮說道：「我也是非常高興能夠認識您，謝謝您的書本跟知識，我會珍惜這一切的，祝您的旅途一切順利，路上小心。」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">30-Jun-22 01:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="991750961452290179" id="message-991750961452290179" title="Message sent: 30-Jun-22 01:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「再見了，道叔。」
+葵默默地說
+
+「妳們也是，保重了。」
+簡單的道別後，千葉先生就抱著書籍，一躍而下
+緊接著，墓碑也被移回原位，墓地瞬間安靜下來，彷彿剛才的對話都不存在似的</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="991751077835849779" id="message-991751077835849779" title="Message sent: 30-Jun-22 01:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">看來，妳們這次的冒險已經迎來了結局</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="991751191052689460" id="message-991751191052689460" title="Message sent: 30-Jun-22 01:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">———收尾分割線———</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/478444457675718656/bcf5886bcfb56825b8bf8f95ac241bed.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="筱玥#2385" data-user-id="478444457675718656" style="color: rgb(111,169,222)">小月（我想我應該是混善）</span>
+
+
+        <span class="chatlog__timestamp">12-Jul-22 10:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="996425491366035527" id="message-996425491366035527" title="Message sent: 12-Jul-22 10:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">離開故鄉後，某天葵傳訊息告訴妳
+她在整理叔叔留下來的書時，發現了一本記錄，上頭是千葉道雄和食屍鬼認識的過程和部分習性
+很顯然，葵會從親戚手中私吞下來，並保管得好好的
+一方面是紀念，一方面則是……可能還會有再見面的時刻吧，不管是食屍鬼還是千葉先生
+<div class="pre pre--multiline nohighlight">不知道為什麼，就是有這種感覺</div>她在賴上這麼對妳說
+
+END 真實存在的非日常</span>
+
+                                <span class="chatlog__edited-timestamp" title="12-Jul-22 10:42 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="996425874620567673" id="message-996425874620567673" title="Message sent: 12-Jul-22 10:40 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">破案通關：1d6 SAN值恢復，幸運成長一次
+與化為食屍鬼的人對話過：克蘇魯神話+3，獲得食屍鬼相關知識</span>
+
+                                <span class="chatlog__edited-timestamp" title="12-Jul-22 11:44 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 160 message(s)</div>
+</div>
+
+</body>
+
+</html>
